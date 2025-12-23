@@ -1,0 +1,9 @@
+{
+  "name": "frontenders-and-designers-work-together",
+  "version": "0.0.0",
+  "description": "Шаблон репозитория для фронтово-дизайнерского хакатона",
+  "scripts": {
+    "test": "npm test"
+  },
+  "license": "MIT"
+}
