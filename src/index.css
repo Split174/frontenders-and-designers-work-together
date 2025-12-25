@@ -1,0 +1,16 @@
+@import '@byndyusoft-ui/reset-css/document';
+@import '@byndyusoft-ui/reset-css/button';
+@import '@byndyusoft-ui/reset-css/text';
+@import '@byndyusoft-ui/reset-css/input';
+
+html {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+}
+
+body {
+    margin: 0;
+}

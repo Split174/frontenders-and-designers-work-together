@@ -1,0 +1,51 @@
+{
+    "name": "frontenders-and-designers-work-together",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "description": "Шаблон репозитория для фронтово-дизайнерского хакатона",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "preview": "vite preview",
+        "eslint:check": "eslint ./src --ext ts,tsx",
+        "eslint:fix": "eslint ./src --ext ts,tsx --fix",
+        "test": "vitest",
+        "test:ui": "vitest --ui",
+        "test:coverage": "vitest run --coverage",
+        "prettier:check": "prettier --check \"**/**\"",
+        "prettier:fix": "prettier --check \"**/**\" --write",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    },
+    "dependencies": {
+        "@byndyusoft-ui/reset-css": "^0.1.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "@storybook/addon-a11y": "^10.1.10",
+        "@storybook/addon-docs": "^10.1.10",
+        "@storybook/react-vite": "^10.1.10",
+        "@types/node": "^24.10.1",
+        "@types/react": "^19.2.5",
+        "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^5.1.1",
+        "@vitest/coverage-v8": "^4.0.16",
+        "@vitest/ui": "^4.0.16",
+        "eslint": "^9.39.1",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-refresh": "^0.4.24",
+        "eslint-plugin-storybook": "^10.1.10",
+        "globals": "^16.5.0",
+        "playwright": "^1.57.0",
+        "prettier": "3.7.4",
+        "storybook": "^10.1.10",
+        "typescript": "~5.9.3",
+        "typescript-eslint": "^8.46.4",
+        "vite": "^7.2.4",
+        "vite-plugin-svgr": "^4.5.0",
+        "vitest": "^4.0.16"
+    }
+}
