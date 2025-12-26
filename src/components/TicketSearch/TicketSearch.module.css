@@ -1,0 +1,247 @@
+.mainWrapper {
+    position: relative;
+    width: fit-content;
+    font-family: 'Inter', sans-serif; /* Желательно шрифт посимпатичнее */
+}
+
+.searchBar {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border: 1px solid #cfd8dc;
+    border-radius: 12px;
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.inputGroup {
+    padding: 8px 20px;
+    border-right: 1px solid #eceff1;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    min-width: 150px;
+    justify-content: center;
+}
+
+.inputGroup:last-of-type {
+    border-right: none;
+}
+
+.label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #90a4ae;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.textInput {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0;
+    font-weight: 600;
+    color: #263238;
+    width: 100%;
+}
+
+.dateDisplay {
+    font-size: 15px;
+    font-weight: 600;
+    color: #263238;
+}
+
+.submitBtn {
+    background: #5c5cff; /* Цвет ближе к скриншоту */
+    color: white;
+    border: none;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submitBtn:hover {
+    background: #4a4ae0;
+}
+
+/* Выпадающая панель */
+.dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
+    padding: 24px;
+    z-index: 1000;
+    width: 680px; /* Шире, чтобы вместить два календаря */
+}
+
+/* Календарная сетка */
+.calendarContainer {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.monthColumn {
+    flex: 1;
+}
+
+.monthHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #263238;
+}
+
+.navBtn {
+    background: none;
+    border: none;
+    color: #5c5cff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.navBtn:hover {
+    background: #f0f0ff;
+}
+
+.weekDaysGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+}
+
+.weekDay {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #b0bec5;
+    text-transform: uppercase;
+}
+
+.daysGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 4px;
+}
+
+.dayCell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #37474f;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.1s;
+}
+
+.dayCell:hover {
+    background-color: #f5f5f5;
+}
+
+/* Стили для выбранных дат */
+.dayCell.selected {
+    background-color: #5c5cff;
+    color: white;
+}
+
+.dayCell.inRange {
+    background-color: #eef2ff; /* Светло-фиолетовый фон диапазона */
+    color: #37474f;
+    border-radius: 0; /* Чтобы диапазон сливался */
+}
+
+/* Скругление краев диапазона */
+.dayCell.rangeStart {
+    background-color: #5c5cff;
+    color: white;
+    border-radius: 8px 0 0 8px;
+}
+
+.dayCell.rangeEnd {
+    background-color: #5c5cff;
+    color: white;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Если выбрана только одна дата (она и старт и конец) */
+.dayCell.rangeStart.rangeEnd {
+    border-radius: 8px;
+}
+
+.dayCell.empty {
+    cursor: default;
+    background: transparent;
+}
+
+.dayCell.weekend {
+    color: #ff7043;
+}
+
+.dayCell.selected.weekend {
+    color: white;
+}
+
+/* Подвал */
+.dropdownFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 20px;
+}
+
+.toggleContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modeTitle {
+    font-weight: 700;
+    font-size: 16px;
+    color: #263238;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.clearBtn {
+    background: #f3f4f6;
+    color: #5c5cff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.actionBtn {
+    background: #5c5cff;
+    color: white;
+    border: none;
+    padding: 10px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
