@@ -61,11 +61,17 @@ export function TicketSearch() {
         // Сбрасываем часы для корректных расчетов
         baseDate.setHours(0, 0, 0, 0);
 
-        // Если старт не был выбран, устанавливаем его в "сегодня"
+        // Если старт не был выбран, сохраняем его
         if (!startDate) {
             setStartDate(baseDate);
-            setViewDate(new Date(baseDate));
         }
+
+        // --- ФИКС START ---
+        // Всегда переключаем вид календаря на месяц даты старта.
+        // Это нужно, если start выбран в будущем, а мы смотрим на этот месяц,
+        // или если start был null (тогда берем today).
+        setViewDate(new Date(baseDate));
+        // --- ФИКС END ---
 
         // Вычисляем дату конца
         const newEnd = new Date(baseDate);
@@ -226,7 +232,7 @@ export function TicketSearch() {
     return (
         <div className={styles.mainWrapper} ref={containerRef}>
             <div className={styles.searchBar}>
-                {/* Откуда - 3. Убран onClick */}
+                {/* Откуда */}
                 <div className={styles.inputGroup}>
                     <span className={styles.label}>Откуда</span>
                     <input 
@@ -238,7 +244,7 @@ export function TicketSearch() {
                     />
                 </div>
 
-                {/* Куда - 3. Убран onClick */}
+                {/* Куда */}
                 <div className={styles.inputGroup}>
                     <span className={styles.label}>Куда</span>
                     <input 
@@ -250,7 +256,7 @@ export function TicketSearch() {
                     />
                 </div>
 
-                {/* Даты - onClick остался только тут */}
+                {/* Даты */}
                 <div className={styles.inputGroup} style={{ minWidth: '200px' }} onClick={() => setIsPickerOpen(true)}>
                     <span className={styles.label}>Даты</span>
                     <div className={styles.dateDisplay}>
@@ -299,7 +305,6 @@ export function TicketSearch() {
 
                     <div className={styles.dropdownFooter}>
                         <div className={styles.toggleContainer}>
-                           {/* 1. Динамический текст в зависимости от выбранной второй даты */}
                            <span className={styles.modeTitle}>
                                {endDate ? 'Туда-обратно' : 'Только туда'}
                            </span>
