@@ -1,39 +1,65 @@
+/* ./src/components/TicketSearch/TicketSearch.module.css */
+
+/* 1. Подключаем шрифт IBM Plex Sans (веса 400, 500, 600, 700) */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
 .mainWrapper {
     position: relative;
     width: fit-content;
-    font-family: 'Inter', sans-serif; /* Желательно шрифт посимпатичнее */
+    /* 2. Применяем шрифт здесь */
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* В SVG мы видим серую подложку #EFF0F1 для полей 
+   и синюю кнопку #2B83BA. 
+*/
 .searchBar {
     display: flex;
     align-items: stretch;
-    background: #fff;
-    border: 1px solid #cfd8dc;
-    border-radius: 12px;
-    padding: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    background: #EFF0F1; 
+    border-radius: 4px;   
+    padding: 0;           
+    box-shadow: none; 
 }
 
 .inputGroup {
-    padding: 8px 20px;
-    border-right: 1px solid #eceff1;
+    padding: 10px 16px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    min-width: 150px;
+    min-width: 160px;
     justify-content: center;
+    position: relative;
+    transition: background 0.2s;
 }
 
-.inputGroup:last-of-type {
-    border-right: none;
+/* Разделители между полями */
+.inputGroup:not(:last-of-type)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: rgba(33, 39, 43, 0.1);
+}
+
+.inputGroup:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+
+/* Первый элемент скругляем слева */
+.inputGroup:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 .label {
     font-size: 11px;
     text-transform: uppercase;
-    color: #90a4ae;
-    font-weight: 700;
-    margin-bottom: 4px;
+    color: #788b99;
+    font-weight: 600;
+    margin-bottom: 2px;
     letter-spacing: 0.5px;
 }
 
@@ -41,47 +67,60 @@
     border: none;
     outline: none;
     font-size: 16px;
-    padding: 0;
     font-weight: 600;
-    color: #263238;
+    color: #21272B;
+    background: transparent;
     width: 100%;
+    padding: 0;
+    /* Наследуем шрифт явно для input, чтобы браузер не сбросил его */
+    font-family: inherit; 
+}
+
+.textInput::placeholder {
+    color: #21272B;
+    opacity: 0.5;
 }
 
 .dateDisplay {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
-    color: #263238;
+    color: #21272B;
+    white-space: nowrap;
 }
 
 .submitBtn {
-    background: #5c5cff; /* Цвет ближе к скриншоту */
+    background: #2B83BA;
     color: white;
     border: none;
-    padding: 0 24px;
-    border-radius: 8px;
-    font-size: 15px;
+    padding: 0 32px;
+    border-radius: 0 4px 4px 0; 
+    font-size: 16px;
     font-weight: 600;
-    margin-left: 8px;
     cursor: pointer;
     transition: background 0.2s;
+    margin: 0;
+    /* Наследуем шрифт для кнопки */
+    font-family: inherit;
 }
 
 .submitBtn:hover {
-    background: #4a4ae0;
+    background: #236c9c;
 }
 
-/* Выпадающая панель */
+/* --- ВЫПАДАЮЩАЯ ПАНЕЛЬ (КАЛЕНДАРЬ) --- */
+
 .dropdown {
     position: absolute;
-    top: calc(100% + 12px);
+    top: calc(100% + 8px);
     left: 0;
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(33, 39, 43, 0.15);
+    border: none;
     padding: 24px;
     z-index: 1000;
-    width: 680px; /* Шире, чтобы вместить два календаря */
+    width: 680px;
+    color: #21272B;
 }
 
 /* Календарная сетка */
@@ -102,13 +141,13 @@
     margin-bottom: 16px;
     font-weight: 700;
     font-size: 16px;
-    color: #263238;
+    color: #21272B;
 }
 
 .navBtn {
     background: none;
     border: none;
-    color: #5c5cff;
+    color: #2B83BA; 
     cursor: pointer;
     font-size: 18px;
     padding: 4px 8px;
@@ -116,7 +155,7 @@
 }
 
 .navBtn:hover {
-    background: #f0f0ff;
+    background: #EFF0F1;
 }
 
 .weekDaysGrid {
@@ -129,7 +168,7 @@
     text-align: center;
     font-size: 12px;
     font-weight: 600;
-    color: #b0bec5;
+    color: #9aa7b1;
     text-transform: uppercase;
 }
 
@@ -146,45 +185,44 @@
     justify-content: center;
     font-size: 14px;
     cursor: pointer;
-    border-radius: 8px;
-    color: #37474f;
+    border-radius: 4px;
+    color: #21272B;
     font-weight: 500;
     position: relative;
     transition: all 0.1s;
 }
 
 .dayCell:hover {
-    background-color: #f5f5f5;
+    background-color: #EFF0F1;
 }
 
 /* Стили для выбранных дат */
 .dayCell.selected {
-    background-color: #5c5cff;
+    background-color: #2B83BA;
     color: white;
 }
 
 .dayCell.inRange {
-    background-color: #eef2ff; /* Светло-фиолетовый фон диапазона */
-    color: #37474f;
-    border-radius: 0; /* Чтобы диапазон сливался */
+    background-color: #eaf4fc;
+    color: #21272B;
+    border-radius: 0;
 }
 
 /* Скругление краев диапазона */
 .dayCell.rangeStart {
-    background-color: #5c5cff;
+    background-color: #2B83BA;
     color: white;
-    border-radius: 8px 0 0 8px;
+    border-radius: 4px 0 0 4px;
 }
 
 .dayCell.rangeEnd {
-    background-color: #5c5cff;
+    background-color: #2B83BA;
     color: white;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 4px 4px 0;
 }
 
-/* Если выбрана только одна дата (она и старт и конец) */
 .dayCell.rangeStart.rangeEnd {
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .dayCell.empty {
@@ -193,7 +231,7 @@
 }
 
 .dayCell.weekend {
-    color: #ff7043;
+    color: #ff5252;
 }
 
 .dayCell.selected.weekend {
@@ -205,7 +243,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #f5f5f5;
+    border-top: 1px solid #EFF0F1;
     padding-top: 20px;
 }
 
@@ -218,7 +256,7 @@
 .modeTitle {
     font-weight: 700;
     font-size: 16px;
-    color: #263238;
+    color: #21272B;
 }
 
 .actions {
@@ -227,21 +265,32 @@
 }
 
 .clearBtn {
-    background: #f3f4f6;
-    color: #5c5cff;
+    background: #EFF0F1;
+    color: #788b99;
     border: none;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
+    transition: color 0.2s;
+    font-family: inherit; /* Наследуем шрифт */
+}
+
+.clearBtn:hover {
+    color: #21272B;
 }
 
 .actionBtn {
-    background: #5c5cff;
+    background: #2B83BA;
     color: white;
     border: none;
     padding: 10px 32px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
+    font-family: inherit; /* Наследуем шрифт */
+}
+
+.actionBtn:hover {
+    background: #236c9c;
 }
